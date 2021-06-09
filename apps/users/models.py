@@ -92,5 +92,5 @@ class Perfil(AbstractBaseUser, PermissionsMixin):
         message = client.messages.create(
             to=str(self.telefone),
             from_=settings.PHONE_NUMBER,
-            body=f'{self.token} - MAGO AIRSOFT'
+            body=f'Cod: {self.token}'
         )
