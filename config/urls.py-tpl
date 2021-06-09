@@ -16,12 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from rest_framework.authtoken import views as token_views
+from users.views import ConfirmarTelefone, PerfilViewSet, GrupoViewSet
+
+
+router = routers.SimpleRouter()
+router.register(r'perfis', PerfilViewSet)
+router.register(r'grupos', GrupoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', token_views.obtain_auth_token),
+    path('confirmar-telefone/', ConfirmarTelefone.as_view()),
 ] + static(
         settings.STATIC_URL, document_root=settings.STATIC_ROOT
     ) + static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
+
+urlpatterns += router.urls
