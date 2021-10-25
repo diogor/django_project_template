@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken import views as token_views
-from users.views import ConfirmarTelefone, PerfilViewSet, GrupoViewSet
+from apps.users.views import ConfirmarTelefone, PerfilViewSet, GrupoViewSet
 
 
 router = routers.SimpleRouter()
